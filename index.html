@@ -36,23 +36,27 @@
     <link rel="stylesheet" href="./dist/output.css" />
   </head>
   <body
-    class="bg-gray-900 text-white flex flex-col items-center justify-center min-h-screen p-6"
+    class="bg-gray-900 text-white flex flex-col items-center justify-center min-h-screen p-4 sm:p-6"
   >
-    <div class="text-center max-w-2xl mx-auto">
-      <h1 class="text-5xl md:text-7xl font-bold mb-32 text-white font-orbitron">
+    <div class="text-center max-w-2xl mx-auto px-4 sm:px-0">
+      <h1
+        class="text-5xl md:text-7xl font-bold mb-16 text-white font-orbitron title-section"
+      >
         countdown timer
       </h1>
 
       <!-- Timer Display -->
       <div
         id="timer-display"
-        class="timer-display text-7xl md:text-9xl font-bold text-green-400 mb-32 font-orbitron"
+        class="timer-display text-7xl md:text-9xl font-bold text-green-400 mb-16 font-orbitron"
       >
         00:00
       </div>
 
       <!-- Preset Buttons -->
-      <div class="flex flex-col sm:flex-row gap-3 mb-12 justify-center">
+      <div
+        class="flex flex-col sm:flex-row gap-3 mb-8 justify-center controls-section"
+      >
         <button
           onclick="setTimer(15)"
           class="control-btn bg-purple-600 hover:bg-purple-700 text-white text-lg py-3 px-6 flex items-center justify-center gap-2"
@@ -96,7 +100,7 @@
       <!-- Custom Input -->
       <form
         onsubmit="handleCustomTime(event)"
-        class="flex flex-col sm:flex-row items-center justify-center gap-3 mb-20"
+        class="flex flex-col sm:flex-row items-center justify-center gap-3 mb-8 controls-section"
       >
         <input
           type="number"
@@ -128,7 +132,7 @@
       </form>
 
       <!-- Main Control Buttons -->
-      <div class="grid grid-cols-2 gap-4 mb-8">
+      <div class="grid grid-cols-2 gap-4 mb-4">
         <button
           id="play-pause-btn"
           onclick="toggleTimer()"

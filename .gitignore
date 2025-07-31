@@ -65,3 +65,6 @@ temp/
 *.zip
 *.tar.gz
 *.rar 
+
+# Additional files
+SECURITY.md

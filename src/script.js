@@ -32,6 +32,8 @@ function startTimer() {
   isRunning = true;
   endTime = Date.now() + currentTime * 1000;
 
+  // Add timer-running class to body
+  document.body.classList.add('timer-running');
   updateButtonStates();
 
   countdown = setInterval(() => {
@@ -43,6 +45,7 @@ function startTimer() {
       updateDisplay(0);
       display.classList.add('finished');
       isRunning = false;
+      document.body.classList.remove('timer-running');
       updateButtonStates();
       return;
     }
@@ -56,6 +59,7 @@ function startTimer() {
 function pauseTimer() {
   clearInterval(countdown);
   isRunning = false;
+  document.body.classList.remove('timer-running');
   updateButtonStates();
 }
 
@@ -74,6 +78,7 @@ function stopTimer() {
   isRunning = false;
   currentTime = originalTime;
   display.classList.remove('finished');
+  document.body.classList.remove('timer-running');
   updateDisplay(currentTime);
   updateButtonStates();
 }
@@ -85,6 +90,7 @@ function resetTimer() {
   originalTime = 0;
   currentTime = 0;
   display.classList.remove('finished');
+  document.body.classList.remove('timer-running');
   updateDisplay(0);
   updateButtonStates();
 }

@@ -25,4 +25,30 @@
   .control-btn:disabled {
     @apply opacity-50 cursor-not-allowed transform-none;
   }
+
+  /* Timer running state - de-emphasize other elements */
+  .timer-running .timer-display {
+    @apply relative z-10;
+  }
+
+  .timer-running .controls-section {
+    @apply opacity-40 transition-all duration-500;
+  }
+
+  .timer-running .controls-section:hover {
+    @apply opacity-80;
+  }
+
+  .timer-running .title-section {
+    @apply opacity-30 transition-all duration-500;
+  }
+
+  /* All buttons get reduced opacity when timer is running */
+  .timer-running .control-btn {
+    @apply opacity-40 transition-all duration-300;
+  }
+
+  .timer-running .control-btn:hover {
+    @apply opacity-100 scale-105;
+  }
 }
