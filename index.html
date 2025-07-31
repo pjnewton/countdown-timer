@@ -1,0 +1,216 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-Content-Type-Options" content="nosniff" />
+    <meta http-equiv="X-Frame-Options" content="DENY" />
+    <meta
+      http-equiv="Referrer-Policy"
+      content="strict-origin-when-cross-origin"
+    />
+    <meta name="robots" content="noindex, nofollow" />
+    <meta
+      http-equiv="Content-Security-Policy"
+      content="default-src 'self'; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; script-src 'self' 'unsafe-inline' https://unpkg.com; connect-src 'self'; img-src 'self' data:; frame-ancestors 'none';"
+    />
+    <link rel="icon" type="image/svg+xml" href="./favicon.svg" />
+    <title>
+      Countdown Timer / Guaranteed to Make Your Breaks More Effective
+    </title>
+
+    <!-- Google Font: Orbitron -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;700;900&display=swap"
+      rel="stylesheet"
+    />
+
+    <!-- Heroicons -->
+    <script
+      src="https://unpkg.com/heroicons@2.0.18/24/outline/esm/index.js"
+      type="module"
+    ></script>
+
+    <link rel="stylesheet" href="./dist/output.css" />
+  </head>
+  <body
+    class="bg-gray-900 text-white flex flex-col items-center justify-center min-h-screen p-6"
+  >
+    <div class="text-center max-w-2xl mx-auto">
+      <h1 class="text-5xl md:text-7xl font-bold mb-32 text-white font-orbitron">
+        countdown timer
+      </h1>
+
+      <!-- Timer Display -->
+      <div
+        id="timer-display"
+        class="timer-display text-7xl md:text-9xl font-bold text-green-400 mb-32 font-orbitron"
+      >
+        00:00
+      </div>
+
+      <!-- Preset Buttons -->
+      <div class="flex flex-col sm:flex-row gap-3 mb-12 justify-center">
+        <button
+          onclick="setTimer(15)"
+          class="control-btn bg-purple-600 hover:bg-purple-700 text-white text-lg py-3 px-6 flex items-center justify-center gap-2"
+        >
+          <svg
+            class="w-5 h-5"
+            fill="none"
+            stroke="currentColor"
+            viewBox="0 0 24 24"
+          >
+            <path
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              stroke-width="2"
+              d="M12 6v6h4.5m4.5 0a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z"
+            />
+          </svg>
+          15 min Break
+        </button>
+        <button
+          onclick="setTimer(45)"
+          class="control-btn bg-indigo-600 hover:bg-indigo-700 text-white text-lg py-3 px-6 flex items-center justify-center gap-2"
+        >
+          <svg
+            class="w-5 h-5"
+            fill="none"
+            stroke="currentColor"
+            viewBox="0 0 24 24"
+          >
+            <path
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              stroke-width="2"
+              d="M12 6v6h4.5m4.5 0a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z"
+            />
+          </svg>
+          45 min Lab
+        </button>
+      </div>
+
+      <!-- Custom Input -->
+      <form
+        onsubmit="handleCustomTime(event)"
+        class="flex flex-col sm:flex-row items-center justify-center gap-3 mb-20"
+      >
+        <input
+          type="number"
+          id="custom-minutes"
+          placeholder="Enter minutes"
+          class="px-6 py-3 rounded text-black font-orbitron text-lg"
+          min="1"
+          required
+        />
+        <button
+          type="submit"
+          class="control-btn bg-teal-600 hover:bg-teal-700 text-white text-lg py-3 px-6 flex items-center justify-center gap-2"
+        >
+          <svg
+            class="w-5 h-5"
+            fill="none"
+            stroke="currentColor"
+            viewBox="0 0 24 24"
+          >
+            <path
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              stroke-width="2"
+              d="M12 6v6h4.5m4.5 0a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z"
+            />
+          </svg>
+          Set Timer
+        </button>
+      </form>
+
+      <!-- Main Control Buttons -->
+      <div class="grid grid-cols-2 gap-4 mb-8">
+        <button
+          id="play-pause-btn"
+          onclick="toggleTimer()"
+          class="control-btn bg-green-600 hover:bg-green-700 text-white text-lg py-3 flex items-center justify-center gap-2"
+        >
+          <svg
+            class="w-5 h-5"
+            fill="none"
+            stroke="currentColor"
+            viewBox="0 0 24 24"
+          >
+            <path
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              stroke-width="2"
+              d="M5.25 5.653c0-.856.917-1.398 1.667-.986l11.54 6.347a1.125 1.125 0 0 1 0 1.972l-11.54 6.347c-.75.412-1.667-.13-1.667-.986V5.653Z"
+            />
+          </svg>
+          Play
+        </button>
+        <button
+          id="stop-btn"
+          onclick="stopTimer()"
+          class="control-btn bg-red-600 hover:bg-red-700 text-white text-lg py-3 flex items-center justify-center gap-2"
+          disabled
+        >
+          <svg
+            class="w-5 h-5"
+            fill="none"
+            stroke="currentColor"
+            viewBox="0 0 24 24"
+          >
+            <path
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              stroke-width="2"
+              d="M5.25 7.5A2.25 2.25 0 0 1 7.5 5.25h9a2.25 2.25 0 0 1 2.25 2.25v9a2.25 2.25 0 0 1-2.25 2.25h-9a2.25 2.25 0 0 1-2.25-2.25v-9Z"
+            />
+          </svg>
+          Stop
+        </button>
+        <button
+          onclick="resetTimer()"
+          class="control-btn bg-gray-600 hover:bg-gray-700 text-white text-lg py-3 flex items-center justify-center gap-2"
+        >
+          <svg
+            class="w-5 h-5"
+            fill="none"
+            stroke="currentColor"
+            viewBox="0 0 24 24"
+          >
+            <path
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              stroke-width="2"
+              d="M16.023 9.348h4.992v-.001M2.985 19.644v-4.992m0 0h4.992m-4.993 0 3.181 3.183a8.25 8.25 0 0 0 13.803-3.7M4.031 9.865a8.25 8.25 0 0 1 13.803-3.7l3.181 3.182m0-4.991v4.99"
+            />
+          </svg>
+          Reset
+        </button>
+        <button
+          onclick="addTime()"
+          class="control-btn bg-blue-600 hover:bg-blue-700 text-white text-lg py-3 flex items-center justify-center gap-2"
+        >
+          <svg
+            class="w-5 h-5"
+            fill="none"
+            stroke="currentColor"
+            viewBox="0 0 24 24"
+          >
+            <path
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              stroke-width="2"
+              d="M12 4.5v15m7.5-7.5h-15"
+            />
+          </svg>
+          Add Time
+        </button>
+      </div>
+    </div>
+
+    <script src="./src/script.js"></script>
+  </body>
+</html>

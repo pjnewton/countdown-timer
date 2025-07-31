@@ -1,0 +1,21 @@
+{
+  "name": "countdown-timer",
+  "version": "1.0.0",
+  "description": "A clean, responsive countdown timer for instructors running group sessions",
+  "main": "index.html",
+  "scripts": {
+    "build": "tailwindcss -i ./src/styles.css -o ./dist/output.css --watch",
+    "build:prod": "tailwindcss -i ./src/styles.css -o ./dist/output.css --minify"
+  },
+  "keywords": [
+    "timer",
+    "countdown",
+    "instructor",
+    "web-app"
+  ],
+  "author": "",
+  "license": "MIT",
+  "devDependencies": {
+    "tailwindcss": "^3.4.0"
+  }
+}
